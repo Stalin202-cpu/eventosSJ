@@ -43,42 +43,42 @@ def eliminarEvento(request, id):
     return redirect('inicio2')
 
 # Mostrando formulario de ediccion
-def editarEstadio(request, id):
-    estadioEditar = Estadios.objects.get(id=id)
-    return render(request, "editarEstadio.html", {'estadioEditar': estadioEditar})
+def editarEvento(request, id):
+    eventoEditar = Eventos.objects.get(id=id)
+    return render(request, "editarEstadio.html", {'eventoEditar': eventoEditar})
 
-def procesarEdicionEstadios(request):
+def procesarEdicionEventos(request):
     
     id=request.POST["id"]
     nombre = request.POST["nombre"]
-    ubicacion = request.POST["ubicacion"]
-    capacidad = request.POST["capacidad"]
+    descripcion = request.POST["descripcion"]
     fecha = request.POST["fecha"]
+    hora = request.POST["hora"]
 
-    logo=request.FILES.get("logo")
-    pdf=request.FILES.get("pdf")
+    logoEvento=request.FILES.get("logoEvento")
+    pdfEvento=request.FILES.get("pdfEvento")
     
-    estadios2=Estadios.objects.get(id=id)
-    estadios2.nombre=nombre
-    estadios2.ubicacion=ubicacion
-    estadios2.capacidad=capacidad
-    estadios2.fecha=fecha
+    eventos2=Eventos.objects.get(id=id)
+    eventos2.nombre=nombre
+    eventos2.descripcion=descripcion
+    eventos2.fecha=fecha
+    eventos2.hora=hora
 
-    if logo :
-        if estadios2.logo:
-            rutaLogo = os.path.join(settings.MEDIA_ROOT, str(estadios2.logo))
+    if logoEvento :
+        if eventos2.logoEvento:
+            rutaLogo = os.path.join(settings.MEDIA_ROOT, str(eventos2.logoEvento))
             if os.path.isfile(rutaLogo):
                 os.remove(rutaLogo)
-        estadios2.logo = logo
+        eventos2.logoEvento = logoEvento
 
-    if pdf:
-        if estadios2.pdf:
-            rutaPdf = os.path.join(settings.MEDIA_ROOT, str(estadios2.pdf))
+    if pdfEvento:
+        if eventos2.pdfEvento:
+            rutaPdf = os.path.join(settings.MEDIA_ROOT, str(eventos2.pdfEvento))
             if os.path.isfile(rutaPdf):
                 os.remove(rutaPdf)
-        estadios2.pdf = pdf
+        eventos2.pdfEvento = pdfEvento
         
-    estadios2.save()
+    eventos2.save()
     #Mensaje de confirmacion
-    messages.success(request, "Estadio Actualizado exitosamente")
-    return redirect('inicio')
+    messages.success(request, "Evento Actualizado exitosamente")
+    return redirect('inicio2')
