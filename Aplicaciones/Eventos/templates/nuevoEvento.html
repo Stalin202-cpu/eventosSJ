@@ -1,0 +1,90 @@
+{% extends './plantilla.html' %}
+{% load static %}
+{% block contenido %}
+<br><br><br><br><br><br>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light p-4 rounded shadow-sm">
+        <h1 class="mb-4">Nuevo Estadio</h1>
+        <form action="guardarEvento" id="frm_nuevo_evento" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+
+            <label for="nombre">Nombre:</label>
+            <input class="form-control mb-3" type="text" name="nombre" id="nombre" required><br><br>
+
+            <label for="descripcion">Descripción:</label>
+            <input class="form-control mb-3" type="text" name="ubicacion" id="ubicacion" required><br><br>
+
+            <label for="fecha">Fecha:</label>
+            <input class="form-control mb-3" type="date" name="fecha" id="fecha" required><br><br>
+
+            <label for="hora">Hora:</label>
+            <input class="form-control mb-3" type="time" name="fecha" id="fecha" required><br><br>
+
+            <label for="logoEvento">Imagen del Evento:</label>
+            <input type="file" name="logoEvento" id="logoEvento" class="form-control" required><br><br>
+
+            <label for="pdfEvento">Seleccionar PDF:</label>
+            <input type="file" name="pdfEvento" id="pdfEvento" class="form-control" required><br><br>
+
+            <br>
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <a class="btn btn-outline-danger" href="{% url 'inicio2' %}">Cancelar</a>
+        </form>
+        <br>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+
+<script>
+    $("#frm_nuevo_evento").validate({
+        rules: {
+            "nombre": {
+                required: true,
+                minlength: 3,
+                maxlength: 10
+            },
+            "descripcion": {
+                required: true,
+            },
+            "fecha": {
+                required: true,
+                date: true
+            },
+            "hora": {
+                required: true,
+            },
+            "pdfEvento": {
+                required: true
+            },
+            "pdfEvento": {
+                required: true
+            }
+        },
+        messages: {
+            "nombre": {
+                required: "Por favor, ingrese el nombre del evento",
+                minlength: "El nombre debe tener al menos 3 letras.",
+                maxlength: "El nombre no debe exceder las 10 letras."
+            },
+            "descripcion": {
+                required: "Por favor, ingrese la descripcion del evento."
+            },
+            "fecha": {
+                required: "Por favor, seleccione una fecha.",
+                date: "Ingrese una fecha válida."
+            },
+            "hora": {
+                required: "Por favor, seleccione una hora del evento.",
+            },
+            "logoEvento": {
+                required: "Por favor, seleccione una imagen del evento."
+            },
+            "pdfEvento": {
+                required: "Por favor, seleccione un archivo PDF."
+            }
+        }
+    });
+</script>
+{% endblock %}
+

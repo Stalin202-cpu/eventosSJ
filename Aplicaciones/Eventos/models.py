@@ -4,7 +4,7 @@ from django.db import models
 class Eventos(models.Model):
     id = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=100)
-    descripcion = models.TextField(blank=True, null=True)
+    descripcion = models.CharField()
     fecha = models.DateField()
     hora = models.TimeField()
     logoEvento=models.FileField(upload_to='cargos', null=True, blank=True)
