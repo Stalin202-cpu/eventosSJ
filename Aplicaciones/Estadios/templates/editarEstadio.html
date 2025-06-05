@@ -1,4 +1,3 @@
-<!-- el extend es para heredar -->
 {% extends './plantilla.html' %}
 {% load static %}
 {% block contenido %}
@@ -7,110 +6,81 @@
     <div class="col-md-3"></div>
     <div class="col-md-6 bg-light p-4 rounded shadow-sm">
         <h1 class="mb-4">Editar Estadio</h1>
-        <form action="/procesarEdicionEstadios" id="frm_editar_estadio" enctype="multipart/form-data"  method="post">
+        <form action="/procesarEdicionEstadios" id="frm_editar_estadio" enctype="multipart/form-data" method="post">
             {% csrf_token %}
-            <input type="hidden" name="id" value="{{estadioEditar.id}}">
-            
+            <input type="hidden" name="id" value="{{ estadioEditar.id }}">
+
             <label for="nombre">Nombre:</label>
-            <input class="form-control mb-3" type="text" name="nombre" id="nombre" value="{{estadioEditar.nombre}}" ><br>
+            <input class="form-control mb-3" type="text" name="nombre" id="nombre" value="{{ estadioEditar.nombre }}" required>
 
             <label for="ubicacion">Ubicación:</label>
-            <input class="form-control mb-3" type="text" name="ubicacion" id="ubicacion" value="{{estadioEditar.ubicacion}}" ><br>
+            <input class="form-control mb-3" type="text" name="ubicacion" id="ubicacion" value="{{ estadioEditar.ubicacion }}" required>
 
             <label for="capacidad">Capacidad:</label>
-            <input class="form-control mb-3" type="number" name="capacidad" id="capacidad" value="{{estadioEditar.capacidad}}" ><br>
+            <input class="form-control mb-3" type="number" name="capacidad" id="capacidad" value="{{ estadioEditar.capacidad }}" required>
 
             <label for="fecha">Fecha:</label>
-            <input class="form-control mb-3" type="date" name="fecha" id="fecha" value="{{estadioEditar.fecha}}" ><br>
+            <input class="form-control mb-3" type="date" name="fecha" id="fecha" value="{{ estadioEditar.fecha }}" required>
 
-            <label for="">LogoTipo</label>
-            <input type="file" name="logo" id="logo" class="form-control"><br><br>
+            <label for="logo">Logotipo:</label>
+            <input type="file" name="logo" id="logo" class="form-control">
 
-            <label for="">Selecionar PDF</label>
-            <input type="file" name="pdf" id="pdf" class="form-control"><br><br>
+            <label for="pdf">Seleccionar PDF:</label>
+            <input type="file" name="pdf" id="pdf" class="form-control">
 
-
-
-            <button
-            class="btn btn-warning"
-            type="submit"><i class="fa fa-pen"></i>
-                Editar</button>
-            <a 
-            class="btn btn-outline-danger"
-            href="{% url 'inicio' %}"><i class=" fa fa-times"></i>
-                Cancelar
+            <br>
+            <button class="btn btn-warning" type="submit">
+                <i class="fa fa-pen"></i> Editar
+            </button>
+            <a class="btn btn-outline-danger" href="{% url 'inicio' %}">
+                <i class="fa fa-times"></i> Cancelar
             </a>
-            
         </form>
         <br>
     </div>
     <div class="col-md-3"></div>
 </div>
+
 <script>
     $("#frm_editar_estadio").validate({
-        rules:{
-            "nombre":{
-                required:true,
-                minlength:3,//Cuenta los caracteres
-                maxlength:10//caracteres maximos
+        rules: {
+            "nombre": {
+                required: true,
+                minlength: 3,
+                maxlength: 10
             },
-            "ubicacion":{
-                required:true,
+            "ubicacion": {
+                required: true
             },
-            "capacidad":{
-                required:true,
+            "capacidad": {
+                required: true,
                 number: true,
                 min: 10
-
             },
-            "fecha":{
-                required:true,
+            "fecha": {
+                required: true,
                 date: true
-
-            },
-            "logo": {
-                required: true,S
-            },
-            "pdf":{
-                required:true,
             }
         },
-        messages:{
-             "nombre":{
-                required:"Por favor ingrese este campo es Obligatorio!!",
-                minlength:"Este campo solo acepta nombres de 3 Letras",//Cuenta los caracteres
-                maxlength:"El nombre debe ser maximo de 10 Letras" //caracteres maximos
+        messages: {
+            "nombre": {
+                required: "Por favor, ingrese el nombre del estadio.",
+                minlength: "El nombre debe tener al menos 3 letras.",
+                maxlength: "El nombre no debe exceder 10 letras."
             },
-
-            "cedula":{
-                required:"Por favor ingrese la cedula corectamente",
-                minlength: "La cédula debe tener exactamente 10 dígitos.",
-                maxlength: "La cédula debe tener exactamente 10 dígitos."
+            "ubicacion": {
+                required: "Por favor, ingrese la ubicación del estadio."
             },
-            "turno":{
-                required:"Por favor ingrese el turno que le toca (Dia, Tarde, Noche)"
+            "capacidad": {
+                required: "Por favor, ingrese la capacidad.",
+                number: "Este campo solo acepta números.",
+                min: "La capacidad mínima debe ser 10 personas."
             },
-
-            "capacidad":{
-                required:"Por favor ingrese la capacidad del Estadio",
-                number: "Este campo solo acepta numeros enteros",
-                min: "Debe ser maximo 10 Personas"
-
-            },
-
-            "fecha":{
-                required:"Por favor ingrese la fecha",
-                date: "Este campo solo acepta fechas"
-
-            },
-            "logo": {
-                required: "Por favor, seleccione una imagen.",
-            },
-            "pdf": {
-                required: "Por favor, seleccione un documento PDF.",
+            "fecha": {
+                required: "Por favor, seleccione una fecha.",
+                date: "Ingrese una fecha válida."
             }
         }
     });
 </script>
-
 {% endblock %}
