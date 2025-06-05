@@ -20,14 +20,14 @@ def guardarEstadio(request):
     capacidad = request.POST["capacidad"]
     fecha = request.POST["fecha"]
 
-    eventoId = request.POST["eventos"]
-    eventos=Eventos.objects.get(id=eventoId)
+    eventoId = request.POST["evento"]
+    evento=Eventos.objects.get(id=eventoId)
 
     #Subiendo archivo con parentecis
     logo=request.FILES.get("logo")
     pdf=request.FILES.get("pdf")
 
-    Estadios.objects.create(nombre=nombre, ubicacion=ubicacion, capacidad=capacidad, fecha=fecha,eventos=eventos, logo=logo, pdf=pdf)
+    Estadios.objects.create(nombre=nombre, ubicacion=ubicacion, capacidad=capacidad, fecha=fecha,evento=evento, logo=logo, pdf=pdf)
 
     #Mensaje de confirmacion 
     messages.success(request, "Estadio guardado exitosamente")
@@ -49,7 +49,8 @@ def eliminarEstadio(request, id):
 # Mostrando formulario de ediccion
 def editarEstadio(request, id):
     estadioEditar = Estadios.objects.get(id=id)
-    return render(request, "editarEstadio.html", {'estadioEditar': estadioEditar})
+    remEventos=Eventos.objects.all()
+    return render(request, "editarEstadio.html", {'estadioEditar': estadioEditar, 'eventos':remEventos,})
 
 def procesarEdicionEstadios(request):
     
@@ -59,6 +60,9 @@ def procesarEdicionEstadios(request):
     capacidad = request.POST["capacidad"]
     fecha = request.POST["fecha"]
 
+    eventoId = request.POST["evento"]
+    evento=Eventos.objects.get(id=eventoId)
+
     logo=request.FILES.get("logo")
     pdf=request.FILES.get("pdf")
     
@@ -67,6 +71,8 @@ def procesarEdicionEstadios(request):
     estadios2.ubicacion=ubicacion
     estadios2.capacidad=capacidad
     estadios2.fecha=fecha
+
+    estadios2.evento=evento
 
     if logo :
         if estadios2.logo:

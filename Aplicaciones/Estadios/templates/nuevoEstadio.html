@@ -21,6 +21,14 @@
             <label for="fecha">Fecha:</label>
             <input class="form-control mb-3" type="date" name="fecha" id="fecha" required><br><br>
 
+            <label for="evento" >Evento</label><br>
+            <select name="evento" id="evento">
+                <option value="">Seleccione un Evento</option>
+                {% for e in eventos%}
+                    <option value="{{e.id}}">{{e.nombre}}</option>
+                {% endfor%}
+            </select><br><br><br>
+
             <label for="logo">Imagen del Estadio:</label>
             <input type="file" name="logo" id="logo" class="form-control" required><br><br>
 
