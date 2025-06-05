@@ -2,14 +2,12 @@
 {% load static %}
 {% block contenido %}
 <br><br><br><br><br><br>
-
-<h1 class="text-center">Listado de Estadios</h1>
+<h1 class="text-center">Listado de Cajeros</h1>
 <br>
 <table class="table table-bordered table-striped table-hover">
-
     <thead>
         <tr class="table-success text-center
-            table-striped table-hover">    
+            table-striped table-hover">
             <th>ID</th>
             <th>NOMBRE</th>
             <th>CÉDULA</th>
@@ -17,8 +15,70 @@
             <th>USUARIO</th>
             <th>HOJA DE VIDA</th>
             <th>ACCIONES</th>
+
         </tr>
     </thead>
+    <tbody>
+        {% for cargoCajeros in Cajeros %}
+            <tr>
+                <td>{{cargoCajeros.id}}</td>
+                <td>{{cargoCajeros.nombre}}</td>
+                <td>{{cargoCajeros.cedula}}</td>
+                <td>{{cargoCajeros.turno}}</td>
+                <td>
+                    {% if cargoCajeros.logo %}
+                        <img src="{{ cargoCajeros.logo.url }}" 
+                        height="80px" alt="">
+                    {% else %}
+                        Ninguna Imagen Subida
+                    {% endif %}
+                </td>
+                <td>
+                    {% if cargoCajeros.pdf %}
+                        <a href="{{ cargoCajeros.pdf.url }}" download>Descargar PDF</a>
+                    {% else %}
+                        Ningún Documento Subido
+                    {% endif %}
+                </td>
 
+                <td>
+                    <a href="editarCajero/{{cargoCajeros.id}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
+                    <a href="#" 
+                    onclick="eliminarCajero('{{cargoCajeros.id}}')"
+                    class="btn btn-outline-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                    
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
 </table>
+<div class="text-center">
+    <a href="nuevoCajero" class="btn btn-primary">
+        Agregar Cajero
+    </a>
+</div>
+<br><br><br><br><br><br>
+<script>
+    function eliminarCajero(id){
+        Swal.fire({
+            title: "Desae eliminar?",
+            text: "¿Estas seguro de eliminar al Cajero de forma permanenete?",
+            icon: "Advertencia",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Borrar"
+            }).then((result) => {
+            if (result.isConfirmed) {
+
+                window.location.href="/eliminarCajero/"+id
+            
+            }
+        });
+        
+    }
+    
+</script>
 {% endblock %}

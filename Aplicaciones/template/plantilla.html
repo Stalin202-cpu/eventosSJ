@@ -1,168 +1,126 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Inicio</title>
-    <!-- Estilos CSS -->
-    <link rel="stylesheet" href="{% static 'plantilla/specer/css/bootstrap.min.css' %}">
-    <link rel="stylesheet" href="{% static 'plantilla/specer/css/font-awesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'plantilla/specer/css/style.css' %}">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - Selecao Bootstrap Template</title>
+
+  <!-- jQuery (debe ir antes que los plugins que lo usen) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+
+  <!-- Bootstrap desde CDN -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Favicons -->
+  <link href="{% static 'plantilla/selecao/assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'plantilla/selecao/assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&family=Poppins:wght@100..900&family=Raleway:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'plantilla/selecao/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'plantilla/selecao/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'plantilla/selecao/assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'plantilla/selecao/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'plantilla/selecao/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'plantilla/selecao/assets/css/main.css' %}" rel="stylesheet">
 </head>
-<body>
-<!-- Header Section Begin -->
-<header class="header-section">
-    <div class="header__top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="ht-info">
-                        <ul>
-                            <li>20:00 - May 19, 2019</li>
-                            <li><a href="#">Sign in</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="ht-links">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-vimeo"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="header__nav">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="logo">
-                        <a href="{% url 'inicio' %}">
-                            <img src="{% static 'plantilla/specer/img/logo.png' %}" alt="Logo">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-10">
-                    <div class="nav-menu">
-                        <ul class="main-menu">
-                            <li class="active"><a href="#">Home</a></li>
-                            <li><a href="#">Club</a></li>
-                            <li><a href="#">Schedule</a></li>
-                            <li><a href="#">Results</a></li>
-                            <li><a href="#">Sport</a></li>
-                            <li><a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">Blog</a></li>
-                                    <li><a href="#">Blog Details</a></li>
-                                    <li><a href="#">Schedule</a></li>
-                                    <li><a href="#">Results</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Contact Us</a></li>
-                        </ul>
-                        <div class="nm-right search-switch">
-                            <i class="fa fa-search"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="canvas-open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-    </div>
-</header>
-<!-- Header End -->
 
-<!-- Footer Section Begin -->
-<footer class="footer-section set-bg" data-setbg="{% static 'plantilla/specer/img/footer-bg.jpg' %}">
+<body class="index-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center fixed-top bg-dark text-white shadow">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <h1 class="sitename">Tienda</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'inicio2' %}">Inicio</a></li>
+          <li><a href="{% url 'inicio2' %}">Cliente</a></li>
+          <li><a href="{% url 'inicio' %}">Cajeros</a></li>
+          <li><a href="{% url 'inicio3' %}">Facturas</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  {% block contenido %}{% endblock %}
+
+  <!-- Footer -->
+  <footer id="footer" class="footer dark-background">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="fs-logo">
-                    <div class="logo">
-                        <a href="#"><img src="{% static 'plantilla/specer/img/logo.png' %}" alt="Logo"></a>
-                    </div>
-                    <ul>
-                        <li><i class="fa fa-envelope"></i> Info.colorlib@gmail.com</li>
-                        <li><i class="fa fa-copy"></i> +(12) 345 6789 10</li>
-                        <li><i class="fa fa-thumb-tack"></i> 40 Baria Street 133/2 New York City, United States</li>
-                    </ul>
-                    <div class="fs-social">
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-tumblr"></i></a>
-                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 offset-lg-1">
-                <div class="fs-widget">
-                    <h4>Top Club</h4>
-                    <ul class="fw-links">
-                        <li><a href="#">Brazil</a></li>
-                        <li><a href="#">Germany</a></li>
-                        <li><a href="#">Italy</a></li>
-                        <li><a href="#">Argentina</a></li>
-                        <li><a href="#">France</a></li>
-                    </ul>
-                    <ul class="fw-links">
-                        <li><a href="#">England</a></li>
-                        <li><a href="#">Netherlands</a></li>
-                        <li><a href="#">Hungary</a></li>
-                        <li><a href="#">Croatia</a></li>
-                        <li><a href="#">Poland</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="fs-widget">
-                    <h4>Recent News</h4>
-                    <div class="fw-item">
-                        <h5><a href="#">England win shows they have the spark to go far at World Cup</a></h5>
-                        <ul>
-                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
-                            <li><i class="fa fa-edit"></i> 3 Comments</li>
-                        </ul>
-                    </div>
-                    <div class="fw-item">
-                        <h5><a href="#">Sri Lanka v Australia: Cricket World Cup 2019 – live!</a></h5>
-                        <ul>
-                            <li><i class="fa fa-calendar"></i> May 19, 2019</li>
-                            <li><i class="fa fa-edit"></i> 3 Comments</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+      <h3 class="sitename">Bienvenido a mi Sistema</h3>
+      <p>Desarrollado por: Stalin Jaime</p>
+      <div class="social-links d-flex justify-content-center">
+        <a href="#"><i class="bi bi-twitter-x"></i></a>
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-skype"></i></a>
+        <a href="#"><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <span>UTC</span> <strong class="px-1 sitename">Bienvenido a mi Sistema</strong> <span>San Felipe</span>
         </div>
+      </div>
     </div>
-</footer>
-<!-- Footer Section End -->
+  </footer>
 
-<!-- Search Model Begin -->
-<div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="fa fa-close"></i></div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
-        </form>
-    </div>
-</div>
-<!-- Search Model End -->
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-<!-- Js Plugins -->
-<script src="{% static 'plantilla/specer/js/jquery-3.3.1.min.js' %}"></script>
-<script src="{% static 'plantilla/specer/js/bootstrap.min.js' %}"></script>
-<script src="{% static 'plantilla/specer/js/jquery.magnific-popup.min.js' %}"></script>
-<script src="{% static 'plantilla/specer/js/jquery.slicknav.js' %}"></script>
-<script src="{% static 'plantilla/specer/js/owl.carousel.min.js' %}"></script>
-<script src="{% static 'plantilla/specer/js/main.js' %}"></script>
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'plantilla/selecao/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'plantilla/selecao/assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'plantilla/selecao/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'plantilla/selecao/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'plantilla/selecao/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'plantilla/selecao/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'plantilla/selecao/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'plantilla/selecao/assets/js/main.js' %}"></script>
+
+  {% if messages %}
+    {% for mensaje in messages %}
+      <script>
+        Swal.fire({
+          title: "CONFIRMACIÓN",
+          text: "{{ mensaje }}",
+          icon: "success"
+        });
+      </script>
+    {% endfor %}
+  {% endif %}
+
+  <style>
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    .form-control.error {
+      border: 1px solid red;
+    }
+  </style>
 
 </body>
 </html>
