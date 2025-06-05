@@ -43,9 +43,9 @@ def eliminarEstadio(request, id):
     return redirect('inicio')
 
 # Mostrando formulario de ediccion
-def editarCajero(request, id):
-    cajeroEditar = Cajeros.objects.get(id=id)
-    return render(request, "editarCajero.html", {'cajeroEditar': cajeroEditar})
+def editarEstadio(request, id):
+    estadioEditar = Estadios.objects.get(id=id)
+    return render(request, "editarEstadio.html", {'cajeroEditar': estadioEditar})
 
 def procesarEdicionCajeros(request):
     
