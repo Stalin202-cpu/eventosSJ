@@ -15,7 +15,7 @@
             <th>HORA</th>
             <th>IMAGEN DEL EVENTO</th>
             <th>DESCRIPCIÓN DEL EVENTO</th>
-            <th>ACCIONES</th>
+            <th>ACCIONES</th> 
 
         </tr>
     </thead>
@@ -29,7 +29,7 @@
                 <td>{{cargoEvento.hora}}</td>
                 <td>
                     {% if cargoEvento.logoEvento %}
-                        <img src="{{ cargoEstadio.logoEvento.url }}" 
+                        <img src="{{ cargoEvento.logoEvento.url }}" 
                         height="80px" alt="">
                     {% else %}
                         Ninguna Imagen Subida
@@ -37,16 +37,16 @@
                 </td>
                 <td>
                     {% if cargoEvento.pdfEvento %}
-                        <a href="{{ cargoEvento.logoEvento.url }}" download>Descargar PDF</a>
+                        <a href="{{ cargoEvento.pdfEvento.url }}" download>Descargar PDF</a>
                     {% else %}
                         Ningún Documento Subido
                     {% endif %}
                 </td>
 
                 <td>
-                    <a href="editarEstadio/{{cargoEstadio.id}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
+                    <a href="editarEvento/{{cargoEvento.id}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
                     <a href="#" 
-                    onclick="eliminarEstadio('{{cargoEstadio.id}}')"
+                    onclick="eliminarEvento('{{cargoEvento.id}}')"
                     class="btn btn-outline-danger">
                         <i class="fa fa-trash"></i>
                     </a>
@@ -57,16 +57,16 @@
     </tbody>
 </table>
 <div class="text-center">
-    <a href="nuevoEstadio" class="btn btn-primary">
+    <a href="nuevoEvento" class="btn btn-primary">
         Agregar Cajero
     </a>
 </div>
 <br><br><br><br><br><br>
 <script>
-    function eliminarEstadio(id){
+    function eliminarEvento(id){
         Swal.fire({
             title: "Desae eliminar?",
-            text: "¿Estas seguro de eliminar el Estadio de forma permanenete?",
+            text: "¿Estas seguro de eliminar el Evento de forma permanenete?",
             icon: "Advertencia",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
@@ -75,7 +75,7 @@
             }).then((result) => {
             if (result.isConfirmed) {
 
-                window.location.href="/eliminarEstadio/"+id
+                window.location.href="/eliminarEvento/"+id
             
             }
         });
