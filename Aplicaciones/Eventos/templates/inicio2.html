@@ -10,34 +10,34 @@
             table-striped table-hover">
             <th>ID</th>
             <th>NOMBRE</th>
-            <th>UBICACIÓN</th>
-            <th>CAPACIDAD</th>
+            <th>DESCRIPCIÓN</th>
             <th>FECHA</th>
-            <th>IMAGEN DE ESTADIO</th>
-            <th>DESCRIPCIÓN DEL ESTADIO</th>
+            <th>HORA</th>
+            <th>IMAGEN DEL EVENTO</th>
+            <th>DESCRIPCIÓN DEL EVENTO</th>
             <th>ACCIONES</th>
 
         </tr>
     </thead>
     <tbody>
-        {% for cargoEstadio in Estadios %}
+        {% for cargoEvento in Eventos %}
             <tr>
-                <td>{{cargoEstadio.id}}</td>
-                <td>{{cargoEstadio.nombre}}</td>
-                <td>{{cargoEstadio.ubicacion}}</td>
-                <td>{{cargoEstadio.capacidad}}</td>
-                <td>{{cargoEstadio.fecha}}</td>
+                <td>{{cargoEvento.id}}</td>
+                <td>{{cargoEvento.nombre}}</td>
+                <td>{{cargoEvento.descripcion}}</td>
+                <td>{{cargoEvento.fecha}}</td>
+                <td>{{cargoEvento.hora}}</td>
                 <td>
-                    {% if cargoEstadio.logo %}
-                        <img src="{{ cargoEstadio.logo.url }}" 
+                    {% if cargoEvento.logoEvento %}
+                        <img src="{{ cargoEstadio.logoEvento.url }}" 
                         height="80px" alt="">
                     {% else %}
                         Ninguna Imagen Subida
                     {% endif %}
                 </td>
                 <td>
-                    {% if cargoEstadio.pdf %}
-                        <a href="{{ cargoEstadio.pdf.url }}" download>Descargar PDF</a>
+                    {% if cargoEvento.pdfEvento %}
+                        <a href="{{ cargoEvento.logoEvento.url }}" download>Descargar PDF</a>
                     {% else %}
                         Ningún Documento Subido
                     {% endif %}
