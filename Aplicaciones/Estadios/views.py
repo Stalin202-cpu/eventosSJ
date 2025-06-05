@@ -47,7 +47,7 @@ def editarEstadio(request, id):
     estadioEditar = Estadios.objects.get(id=id)
     return render(request, "editarEstadio.html", {'estadioEditar': estadioEditar})
 
-def procesarEdicionCajeros(request):
+def procesarEdicionEstadios(request):
     
     id=request.POST["id"]
     nombre = request.POST["nombre"]
