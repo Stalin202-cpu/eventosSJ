@@ -1,0 +1,86 @@
+{% extends './plantilla.html' %}
+{% load static %}
+{% block contenido %}
+<br><br><br><br><br><br>
+<h1 class="text-center">Listado de Eventos</h1>
+<br>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr class="table-success text-center
+            table-striped table-hover">
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>UBICACIÓN</th>
+            <th>CAPACIDAD</th>
+            <th>FECHA</th>
+            <th>IMAGEN DE ESTADIO</th>
+            <th>DESCRIPCIÓN DEL ESTADIO</th>
+            <th>ACCIONES</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for cargoEstadio in Estadios %}
+            <tr>
+                <td>{{cargoEstadio.id}}</td>
+                <td>{{cargoEstadio.nombre}}</td>
+                <td>{{cargoEstadio.ubicacion}}</td>
+                <td>{{cargoEstadio.capacidad}}</td>
+                <td>{{cargoEstadio.fecha}}</td>
+                <td>
+                    {% if cargoEstadio.logo %}
+                        <img src="{{ cargoEstadio.logo.url }}" 
+                        height="80px" alt="">
+                    {% else %}
+                        Ninguna Imagen Subida
+                    {% endif %}
+                </td>
+                <td>
+                    {% if cargoEstadio.pdf %}
+                        <a href="{{ cargoEstadio.pdf.url }}" download>Descargar PDF</a>
+                    {% else %}
+                        Ningún Documento Subido
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a href="editarEstadio/{{cargoEstadio.id}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
+                    <a href="#" 
+                    onclick="eliminarEstadio('{{cargoEstadio.id}}')"
+                    class="btn btn-outline-danger">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                    
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="text-center">
+    <a href="nuevoEstadio" class="btn btn-primary">
+        Agregar Cajero
+    </a>
+</div>
+<br><br><br><br><br><br>
+<script>
+    function eliminarEstadio(id){
+        Swal.fire({
+            title: "Desae eliminar?",
+            text: "¿Estas seguro de eliminar el Estadio de forma permanenete?",
+            icon: "Advertencia",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Borrar"
+            }).then((result) => {
+            if (result.isConfirmed) {
+
+                window.location.href="/eliminarEstadio/"+id
+            
+            }
+        });
+        
+    }
+    
+</script>
+{% endblock %}
