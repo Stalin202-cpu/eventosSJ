@@ -123,3 +123,9 @@ STATICFILES_DIRS=(os.path.join(BASE_DIR,'eventosSJ/static/Plantilla'),)
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Configurando el acceso a la carpeta media ehmod st carpeta sirve para suvir archivos
+#sudo chmod 777 -R nombreCarpeta o chown revisar
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=(os.path.join(BASE_DIR, 'EVENTOSSJ/media/'))
