@@ -10,23 +10,24 @@
             table-striped table-hover">
             <th>ID</th>
             <th>NOMBRE</th>
-            <th>CÉDULA</th>
-            <th>TURNO</th>
-            <th>USUARIO</th>
-            <th>HOJA DE VIDA</th>
+            <th>UBICACIÓN</th>
+            <th>CAPACIDAD</th>
+            <th>FECHA</th>
+            <th>IMAGEN DE ESTADIO</th>
+            <th>DESCRIPCIÓN DEL ESTADIO</th>
             <th>ACCIONES</th>
 
         </tr>
     </thead>
     <tbody>
-        {% for cargoCajeros in Cajeros %}
+        {% for cargoEstadio in Cajeros %}
             <tr>
-                <td>{{cargoCajeros.id}}</td>
-                <td>{{cargoCajeros.nombre}}</td>
-                <td>{{cargoCajeros.cedula}}</td>
-                <td>{{cargoCajeros.turno}}</td>
+                <td>{{cargoEstadio.id}}</td>
+                <td>{{cargoEstadio.nombre}}</td>
+                <td>{{cargoEstadio.cedula}}</td>
+                <td>{{cargoEstadio.turno}}</td>
                 <td>
-                    {% if cargoCajeros.logo %}
+                    {% if cargoEstadio.logo %}
                         <img src="{{ cargoCajeros.logo.url }}" 
                         height="80px" alt="">
                     {% else %}
@@ -34,7 +35,7 @@
                     {% endif %}
                 </td>
                 <td>
-                    {% if cargoCajeros.pdf %}
+                    {% if cargoEstadio.pdf %}
                         <a href="{{ cargoCajeros.pdf.url }}" download>Descargar PDF</a>
                     {% else %}
                         Ningún Documento Subido
