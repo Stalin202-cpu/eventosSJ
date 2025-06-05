@@ -13,4 +13,4 @@ class Estadios(models.Model):
 
     def __str__(self): 
         fila = "{0}:  {1}  {2}   {3} {4}"
-        return fila.format(self.id, self.nombre, self.ubicacion, self.capacidad, self.fecha)
+        return fila.format(self.id, self.nombre, self.ubicacion, self.capacidad, self.fecha, self.logo, self.pdf)
