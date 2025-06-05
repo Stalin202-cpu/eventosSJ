@@ -44,9 +44,9 @@
                 </td>
 
                 <td>
-                    <a href="editarCajero/{{cargoCajeros.id}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
+                    <a href="editarEstadio/{{cargoEstadio.id}}" class="btn btn-outline-warning"><i class="fa fa-pen"></i></a>
                     <a href="#" 
-                    onclick="eliminarCajero('{{cargoCajeros.id}}')"
+                    onclick="eliminarEstadio('{{cargoEstadio.id}}')"
                     class="btn btn-outline-danger">
                         <i class="fa fa-trash"></i>
                     </a>
@@ -63,7 +63,7 @@
 </div>
 <br><br><br><br><br><br>
 <script>
-    function eliminarCajero(id){
+    function eliminarEstadio(id){
         Swal.fire({
             title: "Desae eliminar?",
             text: "¿Estas seguro de eliminar al Cajero de forma permanenete?",
@@ -75,7 +75,7 @@
             }).then((result) => {
             if (result.isConfirmed) {
 
-                window.location.href="/eliminarCajero/"+id
+                window.location.href="/eliminarEstadio/"+id
             
             }
         });

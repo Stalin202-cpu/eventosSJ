@@ -45,36 +45,40 @@ def eliminarEstadio(request, id):
 # Mostrando formulario de ediccion
 def editarEstadio(request, id):
     estadioEditar = Estadios.objects.get(id=id)
-    return render(request, "editarEstadio.html", {'cajeroEditar': estadioEditar})
+    return render(request, "editarEstadio.html", {'estadioEditar': estadioEditar})
 
 def procesarEdicionCajeros(request):
     
     id=request.POST["id"]
     nombre = request.POST["nombre"]
-    cedula = request.POST["cedula"]
-    turno = request.POST["turno"]
+    ubicacion = request.POST["ubicacion"]
+    capacidad = request.POST["capacidad"]
+    fecha = request.POST["fecha"]
+
     logo=request.FILES.get("logo")
     pdf=request.FILES.get("pdf")
     
-    cajeros2=Cajeros.objects.get(id=id)
-    cajeros2.nombre=nombre
-    cajeros2.cedula=cedula
-    cajeros2.turno=turno
+    estadios2=Estadios.objects.get(id=id)
+    estadios2.nombre=nombre
+    estadios2.ubicacion=ubicacion
+    estadios2.capacidad=capacidad
+    estadios2.fecha=fecha
+
     if logo :
-        if cajeros2.logo:
-            rutaLogo = os.path.join(settings.MEDIA_ROOT, str(cajeros2.logo))
+        if estadios2.logo:
+            rutaLogo = os.path.join(settings.MEDIA_ROOT, str(estadios2.logo))
             if os.path.isfile(rutaLogo):
                 os.remove(rutaLogo)
-        cajeros2.logo = logo
+        estadios2.logo = logo
 
     if pdf:
-        if cajeros2.pdf:
-            rutaPdf = os.path.join(settings.MEDIA_ROOT, str(cajeros2.pdf))
+        if estadios2.pdf:
+            rutaPdf = os.path.join(settings.MEDIA_ROOT, str(estadios2.pdf))
             if os.path.isfile(rutaPdf):
                 os.remove(rutaPdf)
-        cajeros2.pdf = pdf
+        estadios2.pdf = pdf
         
-    cajeros2.save()
+    estadios2.save()
     #Mensaje de confirmacion
-    messages.success(request, "Cajero Actualizado exitosamente")
+    messages.success(request, "Estadio Actualizado exitosamente")
     return redirect('inicio')

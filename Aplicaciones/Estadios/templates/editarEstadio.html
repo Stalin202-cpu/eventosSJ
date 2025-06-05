@@ -1,0 +1,116 @@
+<!-- el extend es para heredar -->
+{% extends './plantilla.html' %}
+{% load static %}
+{% block contenido %}
+<br><br><br><br><br><br>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 bg-light p-4 rounded shadow-sm">
+        <h1 class="mb-4">Editar Estadio</h1>
+        <form action="/procesarEdicionCajeros" id="frm_editar_estadio" enctype="multipart/form-data"  method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{estadioEditar.id}}">
+            
+            <label for="nombre">Nombre:</label>
+            <input class="form-control mb-3" type="text" name="nombre" id="nombre" value="{{estadioEditar.nombre}}" ><br>
+
+            <label for="ubicacion">Ubicación:</label>
+            <input class="form-control mb-3" type="text" name="ubicacion" id="ubicacion" value="{{estadioEditar.ubicacion}}" ><br>
+
+            <label for="capacidad">Capacidad:</label>
+            <input class="form-control mb-3" type="number" name="capacidad" id="capacidad" value="{{estadioEditar.capacidad}}" ><br>
+
+            <label for="fecha">Fecha:</label>
+            <input class="form-control mb-3" type="date" name="fecha" id="fecha" value="{{estadioEditar.fecha}}" ><br>
+
+            <label for="">LogoTipo</label>
+            <input type="file" name="logo" id="logo" class="form-control"><br><br>
+
+            <label for="">Selecionar PDF</label>
+            <input type="file" name="pdf" id="pdf" class="form-control"><br><br>
+
+
+
+            <button
+            class="btn btn-warning"
+            type="submit"><i class="fa fa-pen"></i>
+                Editar</button>
+            <a 
+            class="btn btn-outline-danger"
+            href="{% url 'inicio' %}"><i class=" fa fa-times"></i>
+                Cancelar
+            </a>
+            
+        </form>
+        <br>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<script>
+    $("#frm_editar_estadio").validate({
+        rules:{
+            "nombre":{
+                required:true,
+                minlength:3,//Cuenta los caracteres
+                maxlength:10//caracteres maximos
+            },
+            "ubicacion":{
+                required:true,
+            },
+            "capacidad":{
+                required:true,
+                number: true,
+                min: 10
+
+            },
+            "fecha":{
+                required:true,
+                date: true
+
+            },
+            "logo": {
+                required: true,S
+            },
+            "pdf":{
+                required:true,
+            }
+        },
+        messages:{
+             "nombre":{
+                required:"Por favor ingrese este campo es Obligatorio!!",
+                minlength:"Este campo solo acepta nombres de 3 Letras",//Cuenta los caracteres
+                maxlength:"El nombre debe ser maximo de 10 Letras" //caracteres maximos
+            },
+
+            "cedula":{
+                required:"Por favor ingrese la cedula corectamente",
+                minlength: "La cédula debe tener exactamente 10 dígitos.",
+                maxlength: "La cédula debe tener exactamente 10 dígitos."
+            },
+            "turno":{
+                required:"Por favor ingrese el turno que le toca (Dia, Tarde, Noche)"
+            },
+
+            "capacidad":{
+                required:"Por favor ingrese la capacidad del Estadio",
+                number: "Este campo solo acepta numeros enteros",
+                min: "Debe ser maximo 10 Personas"
+
+            },
+
+            "fecha":{
+                required:"Por favor ingrese la fecha",
+                date: "Este campo solo acepta fechas"
+
+            },
+            "logo": {
+                required: "Por favor, seleccione una imagen.",
+            },
+            "pdf": {
+                required: "Por favor, seleccione un documento PDF.",
+            }
+        }
+    });
+</script>
+
+{% endblock %}
