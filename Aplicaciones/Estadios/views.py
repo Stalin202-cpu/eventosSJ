@@ -11,7 +11,8 @@ def inicio(request):
 
 # Renderizar el formulario para nueva prueba
 def nuevoEstadio(request):
-    return render(request, "nuevoEstadio.html")
+    remEventos=Eventos.objects.all()
+    return render(request, "nuevoEstadio.html", {'eventos':remEventos,})
 
 # Función encargada de guardar una nueva prueba en la base de datos
 def guardarEstadio(request):
