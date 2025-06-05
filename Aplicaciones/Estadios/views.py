@@ -26,20 +26,20 @@ def guardarEstadio(request):
     Estadios.objects.create(nombre=nombre, ubicacion=ubicacion, capacidad=capacidad, fecha=fecha, logo=logo, pdf=pdf)
 
     #Mensaje de confirmacion 
-    messages.success(request, "Cajero guardado exitosamente")
+    messages.success(request, "Estadio guardado exitosamente")
     return redirect('inicio')
 
 # Eliminar una prueba por ID
-def eliminarCajero(request, id):
-    cajeroElimiar = Cajeros.objects.get(id=id)
+def eliminarEstadio(request, id):
+    estadioEliminar = Estadios.objects.get(id=id)
 
-    if cajeroElimiar.logo and os.path.isfile(os.path.join(settings.MEDIA_ROOT, cajeroElimiar.logo.name)):
-        os.remove(os.path.join(settings.MEDIA_ROOT, cajeroElimiar.logo.name))
+    if estadioEliminar.logo and os.path.isfile(os.path.join(settings.MEDIA_ROOT, estadioEliminar.logo.name)):
+        os.remove(os.path.join(settings.MEDIA_ROOT, estadioEliminar.logo.name))
 
-    if cajeroElimiar.pdf and os.path.isfile(os.path.join(settings.MEDIA_ROOT, cajeroElimiar.pdf.name)):
-        os.remove(os.path.join(settings.MEDIA_ROOT, cajeroElimiar.pdf.name))
+    if estadioEliminar.pdf and os.path.isfile(os.path.join(settings.MEDIA_ROOT, estadioEliminar.pdf.name)):
+        os.remove(os.path.join(settings.MEDIA_ROOT, estadioEliminar.pdf.name))
 
-    cajeroElimiar.delete()
+    estadioEliminar.delete()
     return redirect('inicio')
 
 # Mostrando formulario de ediccion
@@ -78,4 +78,3 @@ def procesarEdicionCajeros(request):
     #Mensaje de confirmacion
     messages.success(request, "Cajero Actualizado exitosamente")
     return redirect('inicio')
-
