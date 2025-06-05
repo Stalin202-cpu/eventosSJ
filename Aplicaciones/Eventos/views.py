@@ -45,7 +45,7 @@ def eliminarEvento(request, id):
 # Mostrando formulario de ediccion
 def editarEvento(request, id):
     eventoEditar = Eventos.objects.get(id=id)
-    return render(request, "editarEstadio.html", {'eventoEditar': eventoEditar})
+    return render(request, "editarEvento.html", {'eventoEditar': eventoEditar})
 
 def procesarEdicionEventos(request):
     
