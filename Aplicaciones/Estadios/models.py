@@ -6,4 +6,8 @@ class Estadios(models.Model):
     nombre = models.CharField(max_length=100)
     ubicacion = models.CharField(max_length=150)
     capacidad = models.IntegerField()
-    fecha_inauguracion = models.DateField()
+    fecha = models.DateField()
+
+    def __str__(self): 
+        fila = "{0}:  {1}  {2}   {3} {4}"
+        return fila.format(self.id, self.nombre, self.ubicacion, self.capacidad, self.fecha)
